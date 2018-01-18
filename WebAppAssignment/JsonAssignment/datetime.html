@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time1').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+
+
+
+
+</script>
+<title>Date Time</title>
+
+</head>
+<body onload="startTime()">
+<h1>Time</h1>
+<div id="showTime">
+<label id="time1"></label>
+</div>
+<div id="showTime2">
+<label id="time2"></label>
+</div>
+ 
+ <div id="changedate">
+<form id="datetime">
+
+<input type="text" id="time" value="" size=50 />
+<input type="button" id="reset" value="Reset" />
+<input type="submit" value="Submit Time" />
+</form>
+</div>
+<div id="displayTime"> </div>
+
+ 
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script>
+function runTime() {
+    
+	  var today1 = document.getElementById('time2').innerText;
+	  document.getElementById('time2').innerText='';
+	  var res = today1.split(":");
+	  var h1 = res[0];
+	  var m1 = res[1];
+	  var s1 = res[2];
+	  var s=parseInt(s1);
+	  s=s+1;
+	  var m=parseInt(m1);
+	  
+	  var h=parseInt(h1);
+	  
+	   if(s==60){ 
+	   s=0; 
+	  m+=1;
+	  if(m==60){ 
+	   m=0;h+=1;
+	   }} 
+	
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time2').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(runTime, 1000);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+</script>
+<script>
+
+
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').value =
+    h + ":" + m + ":" + s;
+    
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+jQuery(function($){
+
+var socket = io.connect();
+var $timeForm = $('#datetime');
+var $time = $('#time');
+var $time1 = $('#time1');
+
+var $displaytime = $('#time2');
+$timeForm.submit(function(e){
+
+
+e.preventDefault();
+socket.emit('new user', $time.val(), function(data){
+});
+});
+
+$("#reset").click(function(){
+//alert('abc');
+socket.emit('resetTime', $time.val(), function(data){
+});
+});
+ 
+<!-- $messageForm.submit(function(e){ -->
+<!-- e.preventDefault(); -->
+<!-- socket.emit('send message', $messageBox.val()); -->
+<!-- $messageBox.val(''); -->
+<!-- }); -->
+ 
+socket.on('usernames', function(data){
+$('#showTime2').show();
+$('#showTime').hide();
+var ind = data.length;
+html = data[ind-1];
+$displaytime.html(html);
+runTime();
+});
+
+socket.on('usernames1', function(data){
+
+$('#showTime').show();
+$('#showTime2').hide();
+
+var ind = data.length;
+html = data[ind-1];
+$time.value(html);
+$time1.html(html);
+
+});
+ 
+})
+</script>
+</body>
+</html>
