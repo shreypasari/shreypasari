@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+   <title>The Story Maker</title>
+ </head>
+<body>
+  <div class="container">
+  <h1>The Story Maker</h1>
+  
+  
+  
+  <script>
+	var name = prompt('Enter your name:');
+
+
+	var word1 = prompt('Enter a color ');
+	var word2 = prompt('Enter something to eat ');
+	var word3 = prompt('Enter a name ');
+	var word4 = prompt('Enter another name but rhyming');
+	var word5 = prompt('Enter an animal');
+	
+	
+	var sentence = "You do not like green eggs and ham?\
+I do not like them, Sam-I-am.\
+Could you, would you, with a goat?\
+I would not, could not, with a goat!\
+Would you, could you, on a boat?\
+I could not, would not, on a boat.\
+I will not, will not, with a goat.\
+I will not eat them in the rain.\
+I will not eat them on a train.\
+Not in the dark! Not in a tree!\
+Not in a car! You let me be!\
+I do not like them in a box.\
+I do not like them with a fox.\
+I will not eat them in a house.\
+I do not like them with a mouse.\
+I do not like them here or there.\
+I do not like them ANYWHERE!\
+I do not like green eggs and ham!\
+I do not like them, Sam-I-am. ";
+
+	var col='red';
+	
+	
+	name="<span style='"+"color:"+col+";'>"+name +"</span>";
+	word1="<span style='"+"color:"+col+";'>"+word1 +"</span>";
+	word2="<span style='"+"color:"+col+";'>"+word2 +"</span>";
+	word3="<span style='"+"color:"+col+";'>"+word3 +"</span>";
+	word4="<span style='"+"color:"+col+";'>"+word4 +"</span>";
+	word5="<span style='"+"color:"+col+";'>"+word5 +"</span>";
+
+
+	sentence = sentence.replace(/\bgreen\b/g,word1);
+	sentence = sentence.replace(/\beggs\b/g,word2);
+	sentence = sentence.replace(/\bham\b/g,word3);
+	sentence = sentence.replace(/\bsam\b/g,word4);
+	sentence = sentence.replace(/\bgoat\b/g,word5);
+	
+	document.write(sentence);
+</script>
+  </div>
+</body>
+</html>
