@@ -1,0 +1,51 @@
+<html>
+<head>
+	<script src="assignment.js"></script>
+</head>
+<body>
+<form>
+  <label>Name Mode : </label>
+  <input type="checkbox" id="nameNumber" onclick="showDiv()" checked>
+<br>
+	<div id="name">
+	  <p>Name Mode</p><br>
+	  <label>Select Gender : </label>
+	  <input type="radio" id="male" name="gender" value="male"> Male
+	  <input type="radio" id="female" name="gender" value="female"> Female<br>
+	  <label>Age : </label>
+	  <input type='text' id="userAge"/><br>
+	  <label>Name : </label>
+	  <input type='text' id="userName"/>
+	  <br>
+	  <input type='button' id='button' onclick='analyzeName()' value='Analyze'>
+	</div>
+
+	<div id='number' style="display:none">
+		<p>Number Mode</p><br>
+		<label>Enter a number : </label>
+		<input type='text' id="userInput"/>
+		<br>
+		<input type='button' id='button' onclick='analyzeNumber()' value='Analyze'>
+	</div>
+<br>
+<br>
+
+</form> 
+	
+	
+	<p id='output'></p>
+	
+	<table id = "list" cellspacing = "0px" cellpadding = "20px" text-align = "center" border>
+		<tr>
+			<th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+			<th>Description</th>
+        </tr>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
